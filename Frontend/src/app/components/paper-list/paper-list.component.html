@@ -1,0 +1,33 @@
+<div>
+  <div>
+    <button (click)="setPaperType('research')" [disabled]="paperType==='research'">Research Papers</button>
+    <button (click)="setPaperType('review')" [disabled]="paperType==='review'">Review Papers</button>
+  </div>
+  <div *ngIf="loading">Loading papers...</div>
+  <div *ngIf="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <ul *ngIf="paperType==='research'" class="paper-list">
+      <li *ngFor="let paper of researchPapers" (click)="selectPaper(paper)" class="paper-card">
+        <strong>{{ paper.title }}</strong><br>
+        <span>by {{ paper.author }}</span>
+      </li>
+    </ul>
+    <ul *ngIf="paperType==='review'" class="paper-list">
+      <li *ngFor="let paper of reviewPapers" (click)="selectPaper(paper)" class="paper-card">
+        <strong>{{ paper.title }}</strong><br>
+        <span>by {{ paper.author }}</span>
+      </li>
+    </ul>
+    <div *ngIf="selectedPaper" class="paper-details">
+      <h3>{{ selectedPaper.title }}</h3>
+      <p><strong>Author:</strong> {{ selectedPaper.author }}</p>
+      <p><strong>Abstract:</strong> {{ selectedPaper.abstractText }}</p>
+      <p *ngIf="selectedPaper.methodology"><strong>Methodology:</strong> {{ selectedPaper.methodology }}</p>
+      <p *ngIf="selectedPaper.resultsSummary"><strong>Results:</strong> {{ selectedPaper.resultsSummary }}</p>
+      <p *ngIf="selectedPaper.reviewedTopics"><strong>Reviewed Topics:</strong> {{ selectedPaper.reviewedTopics }}</p>
+      <p *ngIf="selectedPaper.numberOfCitations !== undefined"><strong>Citations:</strong> {{
+        selectedPaper.numberOfCitations }}</p>
+      <p *ngIf="selectedPaper.filePath"><a [href]="selectedPaper.filePath" target="_blank">Download File</a></p>
+    </div>
+  </div>
+</div>

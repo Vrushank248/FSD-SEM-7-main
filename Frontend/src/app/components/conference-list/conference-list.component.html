@@ -1,0 +1,26 @@
+<div *ngIf="loading" class="text-center py-8 text-lg text-blue-700">Loading conferences...</div>
+<div *ngIf="error" class="text-center py-8 text-red-600">{{ error }}</div>
+<div *ngIf="!loading && !error">
+  <h2 class="text-2xl font-bold mb-6 text-center text-blue-900">Upcoming Conferences</h2>
+  <div class="flex flex-wrap gap-6 justify-center">
+    <div *ngFor="let conf of conferences" (click)="selectConference(conf)"
+      class="bg-white border border-blue-100 rounded-lg shadow-md p-6 w-full max-w-xs cursor-pointer hover:shadow-lg transition-all duration-200">
+      <h3 class="text-lg font-semibold text-blue-800 mb-2">{{ conf.title }}</h3>
+      <p class="text-gray-700 mb-1"><strong>Date:</strong> {{ conf.date | date }}</p>
+      <p class="text-gray-700 mb-1"><strong>Time:</strong> {{ conf.time }}</p>
+      <p class="text-gray-700 mb-1"><strong>Location:</strong> {{ conf.location }}</p>
+      <p class="text-gray-600 text-sm truncate"><strong>Description:</strong> {{ conf.description }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="selectedConference"
+    class="conference-details mt-8 mx-auto max-w-lg bg-blue-50 border border-blue-200 rounded-lg p-6 shadow">
+    <h3 class="text-xl font-bold text-blue-900 mb-2">{{ selectedConference.title }}</h3>
+    <p class="mb-1"><strong>Date:</strong> {{ selectedConference.date | date }}</p>
+    <p class="mb-1"><strong>Time:</strong> {{ selectedConference.time }}</p>
+    <p class="mb-1"><strong>Location:</strong> {{ selectedConference.location }}</p>
+    <p class="mb-1"><strong>Description:</strong> {{ selectedConference.description }}</p>
+    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      (click)="selectedConference = null">Close</button>
+  </div>
+</div>

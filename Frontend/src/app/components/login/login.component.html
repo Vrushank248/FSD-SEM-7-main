@@ -1,0 +1,44 @@
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 m-10 items-center">
+  <div class="bg-blue-50 rounded-2xl p-10 shadow-xl h-full flex flex-col items-center justify-center">
+    <img [src]="banner" alt="Conference" class="w-2/3 mx-auto mb-8 rounded-lg shadow" />
+    <h2 class="text-4xl font-extrabold mb-4 text-blue-800 text-center italic">Paper Conference 2025</h2>
+    <p class="text-lg text-blue-900 text-center">Welcome back!<br>Sign in to access your dashboard.</p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+    class="flex flex-col gap-5 shadow-xl p-10 bg-white rounded-2xl border border-blue-100 w-full h-full">
+    <h1 class="text-3xl font-bold text-center mb-2">Login</h1>
+
+    <img [src]="user" alt="User" class="w-28 h-28 mx-auto mb-4 rounded-full border-2 border-blue-200 shadow" />
+
+    <div class="w-full flex flex-col gap-1">
+      <input type="email" placeholder="Enter your email" formControlName="email" required class="input-style" />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-msg">
+        Email is required and must be valid.
+      </div>
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+      <input type="password" placeholder="Enter your password" formControlName="password" required
+        class="input-style" />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-msg">
+        Password is required.
+      </div>
+    </div>
+
+    <button type="submit"
+      class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-xl mt-2">
+      Login
+    </button>
+
+    <div *ngIf="errorMessage" class="text-red-500 text-sm text-center">
+      {{ errorMessage }}
+    </div>
+
+    <div class="text-center mt-4">
+      <p class="text-md text-gray-600">New user?
+        <a routerLink="/register" class="text-blue-600 hover:underline font-medium">Create an account</a>
+      </p>
+    </div>
+  </form>
+</section>
