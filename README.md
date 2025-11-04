@@ -166,16 +166,6 @@ FSD-SEM-7-main/
 
 ---
 
-## 📸 Screenshots (Add Later)
-
-| Page                  | Description                                      |
-| --------------------- | ------------------------------------------------ |
-| 🏠 Home               | Landing Page showing conference listings         |
-| 👤 Profile            | Manage audience info and interests               |
-| 📄 Paper Submission   | Upload and view submitted papers                 |
-| 🧾 Conference Details | View and register for online/offline conferences |
-
----
 
 ## 🧱 Database Design
 
